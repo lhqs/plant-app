@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		
+		
+		<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="./css/bootstrap-theme.css">
+<script src="./js/jquery-2.1.1.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+
+<!--<script src="./js/jquery-2.1.1.min.js></script> -->
+<script src="./js/highcharts.js"></script>
+<script src="./js/dark-unica.js"></script>
+<script src="./js/exporting.js"></script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+
+			<div class="mui-content">
+				<div id="slider" class="mui-slider">
+
+				</div>
+			</div>
+
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="plant-one">
+					<a class="mui-navigate-right">
+						物联网系统
+					</a>
+				</li>
+				
+			</ul>
+			
+			<hr />
+			<br />
+			
+			<div><hr></div>
+				<div id="container1"></div>
+				<div><hr></div>
+				<div id="container2"></div>
+				<div><hr></div>
+				<div id="container3"></div>
+				<div><hr></div>
+				<div id="container4"></div>
+				<!--<script src="./js/pictable.js"></script>-->
+			
+			<!--<button type="button" class="mui-btn mui-btn-blue mui-btn-block" id="posttest">
+				临时：请求方式为post，返回数据弹框提示
+			</button>-->
+
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				var ant_one = document.getElementById("plant-one");
+				ant_one.addEventListener('tap', function() {
+					mui.openWindow({
+						url: 'pages/plant-one.html',
+						id: "plant-one.html"
+					})
+				});
+
+			});
+		</script>
+
+		<!--<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				document.getElementById('posttest').addEventListener('tap', function() {
+					mui.ajax({
+						type: 'POST',
+						data: {
+							'name': '临时测试使用',
+							'age': 18
+						},
+						url: "http://lhqs1314.cn/demo/post-interface.php",
+						success: function(msg) {
+							console.log(msg);
+
+							mui.alert(msg);
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.alert("error");
+						}
+					});
+				});
+			});
+		</script>-->
+		<!--<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				var ant_one = document.getElementById("plant-one");
+				ant_one.addEventListener('tap', function() {
+					mui.openWindow({
+						url: 'pages/plant-one.html',
+						id: "plant-one.html"
+					})
+				});
+
+			});
+			
+		</script>-->
+
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+
+			// 示例数据
+			var data = [{
+					//					'img': 'http://dcloud.io/hellomui/images/shuijiao.jpg',
+					'img': './img/tab-1.jpg',
+					'href': 'http://plant.lhqs1314.cn:9080/rest/api/getAllDataInfo'
+				},
+				{
+					//					'img': 'http://dcloud.io/hellomui/images/muwu.jpg',
+					'img': './img/tab-2.jpg',
+					'href': 'http://plant.lhqs1314.cn:9080/rest/api/getAllDataInfo'
+				},
+				{
+					//					'img': 'http://dcloud.io/hellomui/images/cbd.jpg',
+					'img': './img/tab-3.jpg',
+					'href': 'http://plant.lhqs1314.cn:9080/rest/api/getAllDataInfo'
+				}
+			]
+
+			var len = data.length;
+
+			// 图片
+			var sliderGroup = document.createElement("div");
+			sliderGroup.className = "mui-slider-group mui-slider-loop";
+			var group = '<div class="mui-slider-item mui-slider-item-duplicate">' +
+				'<a href="' + data[len - 1].href + '">' +
+				'<img src="' + data[len - 1].img + '">' +
+				'</a>' +
+				'</div>';
+			for(var i = 0; i < len; i++) {
+				group += '<div class="mui-slider-item">' +
+					'<a href="' + data[i].href + '">' +
+					'<img src="' + data[i].img + '">' +
+					'</a>' +
+					'</div>';
+			}
+			group += '<div class="mui-slider-item mui-slider-item-duplicate">' +
+				'<a href="' + data[0].href + '">' +
+				'<img src="' + data[0].img + '">' +
+				'</a>' +
+				'</div>';
+			sliderGroup.innerHTML = group;
+
+			// 圆点
+			var sliderIndicator = document.createElement("div");
+			sliderIndicator.className = "mui-slider-indicator";
+			for(var i = 0; i < len; i++) {
+				var item = document.createElement("div");
+				item.className = "mui-indicator";
+				if(i == 0) {
+					item.classList.add('mui-active');
+				}
+				sliderIndicator.appendChild(item);
+			}
+
+			var slider = document.getElementById('slider');
+			slider.appendChild(sliderGroup);
+			slider.appendChild(sliderIndicator);
+
+			mui("#slider").slider({
+				interval: 3000
+			});
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script>
+			mui.plusReady(function() {
+				//				var ant_one = document.getElementById("plant-one");
+				//				drawTemp();
+				//  			setInterval("drawTemp();", 10000);  
+				mui.ajax('http://plant.lhqs1314.cn/plant/DataInfoListServlet', {
+					data: {
+						orgin: 'app'
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(msg) {
+						var v = eval(msg);
+						var myarr = [];
+						var humid = [],
+							temper = [],
+							illu = [];
+						for(var i = 0; i < v.length; i++) {
+							myarr[i] = v[i].carbon;
+							humid[i] = v[i].humidity;
+							temper[i] = v[i].temperature;
+							illu[i] = v[i].illumination;
+						}
+						var cararr = eval("[" + myarr + "]");
+						var humid = eval("[" + humid + "]");
+						var temper = eval("[" + temper + "]");
+						var illu = eval("[" + illu + "]");
+
+						var chart = Highcharts.chart('container1', {
+							chart: {
+								type: 'column'
+							},
+							title: {
+								text: '二氧化碳浓度图表'
+							},
+							subtitle: {
+								text: '图表展示的为最近数据，请点击按钮查看坐标轴变化'
+							},
+							xAxis: {
+								categories: ['一', '二', '三', '四', '五', '六',
+									'七', '八', '九', '十', '十一', '十二', '十三', '十四'
+								]
+							},
+							yAxis: {
+								labels: {
+									x: -15
+								},
+								title: {
+									text: '浓度值'
+								}
+							},
+							series: [{
+								name: 'co2',
+								data: cararr
+							}],
+							responsive: {
+								rules: [{
+									condition: {
+										maxWidth: 500
+									},
+									// Make the labels less space demanding on mobile
+									chartOptions: {
+										xAxis: {
+											labels: {
+												formatter: function() {
+													return this.value.replace(' ', '')
+												}
+											}
+										},
+										yAxis: {
+											labels: {
+												align: 'left',
+												x: 0,
+												y: -2
+											},
+											title: {
+												text: ''
+											}
+										}
+									}
+								}]
+							}
+						});
+
+						var chart = Highcharts.chart('container2', {
+							chart: {
+								type: 'column'
+							},
+							title: {
+								text: '空气湿度图表'
+							},
+							subtitle: {
+								text: '图表展示的为最近数据，请点击按钮查看坐标轴变化'
+							},
+							xAxis: {
+								categories: ['一', '二', '三', '四', '五', '六',
+									'七', '八', '九', '十', '十一', '十二', '十三', '十四'
+								]
+							},
+							yAxis: {
+								labels: {
+									x: -15
+								},
+								title: {
+									text: '湿度值'
+								}
+							},
+							series: [{
+								name: '湿度',
+								data: humid
+							}],
+							responsive: {
+								rules: [{
+									condition: {
+										maxWidth: 500
+									},
+									// Make the labels less space demanding on mobile
+									chartOptions: {
+										xAxis: {
+											labels: {
+												formatter: function() {
+													return this.value.replace('月', '')
+												}
+											}
+										},
+										yAxis: {
+											labels: {
+												align: 'left',
+												x: 0,
+												y: -2
+											},
+											title: {
+												text: ''
+											}
+										}
+									}
+								}]
+							}
+						});
+
+						var chart = Highcharts.chart('container3', {
+							chart: {
+								type: 'column'
+							},
+							title: {
+								text: '温度图表'
+							},
+							subtitle: {
+								text: '图表展示的为最近数据，请点击按钮查看坐标轴变化'
+							},
+							xAxis: {
+								categories: ['一', '二', '三', '四', '五', '六',
+									'七', '八', '九', '十', '十一', '十二', '十三', '十四'
+								]
+							},
+							yAxis: {
+								labels: {
+									x: -15
+								},
+								title: {
+									text: '温度值'
+								}
+							},
+							series: [{
+								name: '温度',
+								data: temper
+							}],
+							responsive: {
+								rules: [{
+									condition: {
+										maxWidth: 500
+									},
+									// Make the labels less space demanding on mobile
+									chartOptions: {
+										xAxis: {
+											labels: {
+												formatter: function() {
+													return this.value.replace(' ', '')
+												}
+											}
+										},
+										yAxis: {
+											labels: {
+												align: 'left',
+												x: 0,
+												y: -2
+											},
+											title: {
+												text: ''
+											}
+										}
+									}
+								}]
+							}
+						});
+
+						var chart = Highcharts.chart('container4', {
+							chart: {
+								type: 'column'
+							},
+							title: {
+								text: '光照强度图表'
+							},
+							subtitle: {
+								text: '图表展示的为最近数据，请点击按钮查看坐标轴变化'
+							},
+							xAxis: {
+								categories: ['一', '二', '三', '四', '五', '六',
+									'七', '八', '九', '十', '十一', '十二', '十三', '十四'
+								]
+							},
+							yAxis: {
+								labels: {
+									x: -15
+								},
+								title: {
+									text: '光照强度值'
+								}
+							},
+							series: [{
+								name: '光照强度',
+								data: illu
+							}],
+							responsive: {
+								rules: [{
+									condition: {
+										maxWidth: 500
+									},
+									// Make the labels less space demanding on mobile
+									chartOptions: {
+										xAxis: {
+											labels: {
+												formatter: function() {
+													return this.value.replace('', '')
+												}
+											}
+										},
+										yAxis: {
+											labels: {
+												align: 'left',
+												x: 0,
+												y: -2
+											},
+											title: {
+												text: ''
+											}
+										}
+									}
+								}]
+							}
+						});
+
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+			});
+		</script>
+		
+		
+	</body>
+
+</html>

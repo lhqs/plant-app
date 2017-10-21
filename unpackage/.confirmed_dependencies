@@ -1,0 +1,75 @@
+{
+  "home.html": {
+    "resources": [
+      "img/tab-1.jpg",
+      "img/tab-2.jpg",
+      "img/tab-3.jpg",
+      "css/mui.min.css",
+      "js/pictable.js",
+      "js/exporting.js",
+      "js/jquery-2.1.1.min.js",
+      "js/highcharts.js",
+      "js/bootstrap.min.js",
+      "js/dark-unica.js",
+      "css/bootstrap.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "pages/plant-one.html"
+    ]
+  },
+  "index.html": {
+    "resources": [
+      "home.html",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/exporting.js",
+      "js/jquery-2.1.1.min.js",
+      "js/highcharts.js",
+      "js/bootstrap.min.js",
+      "js/dark-unica.js",
+      "css/bootstrap.min.css"
+    ],
+    "refer": [
+      "home.html",
+      "setting.html",
+      "watch.html",
+      "control.html"
+    ]
+  },
+  "pages/plant-one.html": {
+    "resources": [
+      "css/mui.min.css"
+    ]
+  },
+  "setting.html": {
+    "resources": [
+      "pages/login.html"
+    ],
+    "refer": [
+      "pages/login.html"
+    ]
+  },
+  "pages/login.html": {
+    "resources": [
+      "css/mui.min.css"
+    ]
+  },
+  "watch.html": {
+    "resources": [
+      "js/exporting.js",
+      "js/jquery-2.1.1.min.js",
+      "js/highcharts.js",
+      "js/bootstrap.min.js",
+      "js/dark-unica.js",
+      "css/bootstrap.min.css"
+    ]
+  },
+  "control.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ]
+  }
+}
